@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_lv"
+        android:title="@string/list_view"
+        android:icon="@drawable/ic_arrow_back_black_24dp"/>
+
+    <item
+        android:id="@+id/action_rv"
+        android:title="@string/recycler_view"
+        android:icon="@drawable/ic_arrow_forward_black_24dp"/>
+</menu>

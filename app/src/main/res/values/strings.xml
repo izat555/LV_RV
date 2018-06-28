@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">230618_RecyclerView</string>
+    <string name="list_view">ListView</string>
+    <string name="recycler_view">recylcer_view</string>
+    <string name="imdbid_s">imdbId: %s</string>
+    <string name="type_s">Type: %s</string>
+    <string name="search_models">search_models</string>
+    <string name="my_log">MY_LOG</string>
+    <string name="title_s">Title: %s</string>
+    <string name="year_s">Year: %s</string>
+</resources>
