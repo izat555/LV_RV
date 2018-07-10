@@ -8,4 +8,5 @@
     <string name="my_log">MY_LOG</string>
     <string name="title_s">Title: %s</string>
     <string name="year_s">Year: %s</string>
+    <string name="title">title</string>
 </resources>

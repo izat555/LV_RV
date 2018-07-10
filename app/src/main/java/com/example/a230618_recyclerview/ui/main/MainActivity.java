@@ -42,10 +42,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         setSupportActionBar((Toolbar) findViewById(R.id.main_toolbar));
 
         mEtToolbarSearch = findViewById(R.id.et_toolbar_search);
+
         mIbToolbarSearch = findViewById(R.id.ib_toolbar_search);
         mIbToolbarSearch.setOnClickListener(mOnClickListener);
+
         mBottomNavigationView = findViewById(R.id.bottom_navigation_view);
         mBottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
         mProgressBar = findViewById(R.id.progress_bar);
 
         mPresenter = new MainPresenter(this);
@@ -63,8 +66,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     };
 
     @Override
-    public void onBackGetData(ArrayList<SearchModel> searchModels) {
-        refreshFragment(searchModels);
+    public void onBackGetData(ArrayList<SearchModel> searchModels, String title) {
+        refreshFragment(searchModels, title);
     }
 
     @Override
@@ -73,9 +76,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         Log.d(getString(R.string.my_log), msg);
     }
 
-    private void refreshFragment(ArrayList<SearchModel> searchModels) {
+    private void refreshFragment(ArrayList<SearchModel> searchModels, String title) {
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList(getString(R.string.search_models), searchModels);
+        bundle.putString(getString(R.string.title), title);
 
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 
@@ -88,13 +92,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         switch (mBottomNavigationView.getSelectedItemId()) {
             case R.id.action_lv:
-                Log.d(getString(R.string.my_log), "ListViewFragment");
                 LVFragment lvFragment = new LVFragment();
                 lvFragment.setArguments(bundle);
                 transaction.add(R.id.fragment_container, lvFragment);
                 break;
             case R.id.action_rv:
-                Log.d(getString(R.string.my_log), "RecyclerViewFragment");
                 RVFragment rvFragment = new RVFragment();
                 rvFragment.setArguments(bundle);
                 transaction.add(R.id.fragment_container, rvFragment);
@@ -108,14 +110,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.action_lv:
-                    Log.d(getString(R.string.my_log), "LV");
-                    break;
-                case R.id.action_rv:
-                    Log.d(getString(R.string.my_log), "RV");
-                    break;
-            }
             if (mEtToolbarSearch.getText().toString().isEmpty()) {
                 Snackbar.make(mBottomNavigationView, "Введите название фильма!", Snackbar.LENGTH_LONG).show();
                 return true;

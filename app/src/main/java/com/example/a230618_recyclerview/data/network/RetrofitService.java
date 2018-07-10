@@ -10,4 +10,9 @@ public interface RetrofitService {
     @GET("/")
     Call<SearchResultModel> getListMovieInfo(@Query("apikey") String apikey,
                                              @Query("s") String title);
+
+    @GET("/")
+    Call<SearchResultModel> getListMovieInfoByPage(@Query("apikey") String apikey,
+                                                   @Query("s") String title,
+                                                   @Query("page") int page);
 }

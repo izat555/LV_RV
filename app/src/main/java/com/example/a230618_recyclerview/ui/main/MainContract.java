@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public interface MainContract {
     interface View extends IProgressBar {
-        void onBackGetData(ArrayList<SearchModel> searchModels);
+        void onBackGetData(ArrayList<SearchModel> searchModels, String title);
         void onBackGetDataError(String msg);
     }
 

@@ -1,6 +1,6 @@
 package com.example.a230618_recyclerview.data.network;
 
-import com.example.a230618_recyclerview.config.AppConstants;
+import com.example.a230618_recyclerview.BuildConfig;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -18,7 +18,7 @@ public class NetworkBuilder {
     public static RetrofitService initRetrofitService() {
         if (sRetrofitService == null) {
             sRetrofitService = new Retrofit.Builder()
-                    .baseUrl(AppConstants.BASE_URL)
+                    .baseUrl(BuildConfig.BASE_URL)
                     .client(getClient())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()

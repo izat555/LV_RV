@@ -2,8 +2,8 @@ package com.example.a230618_recyclerview.ui.main;
 
 import android.content.Context;
 
+import com.example.a230618_recyclerview.BuildConfig;
 import com.example.a230618_recyclerview.MovieApp;
-import com.example.a230618_recyclerview.config.AppConstants;
 import com.example.a230618_recyclerview.data.entity.SearchModel;
 import com.example.a230618_recyclerview.data.entity.SearchResultModel;
 import com.example.a230618_recyclerview.ui.lv.LVFragment;
@@ -27,18 +27,18 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public void getData(String title) {
+    public void getData(final String title) {
         mView.showIndicator();
 
         Call<SearchResultModel> call = ((MovieApp) mContext.getApplicationContext())
-                .getRetrofitService().getListMovieInfo(AppConstants.API_KEY, title);
+                .getRetrofitService().getListMovieInfo(BuildConfig.API_KEY, title);
 
         call.enqueue(new Callback<SearchResultModel>() {
             @Override
             public void onResponse(Call<SearchResultModel> call, Response<SearchResultModel> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<SearchModel> searchModels = response.body().getSearchModels();
-                    mView.onBackGetData((ArrayList<SearchModel>) searchModels);
+                    mView.onBackGetData((ArrayList<SearchModel>) searchModels, title);
                     mView.hideIndicator();
                 }
             }
